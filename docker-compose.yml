@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  item-app:
+    image: juniismail/item-app:v1
+    ports:
+      - '80:8080'
+    depends_on:
+      - item-db
+    restart: always
+    networks:
+      - app-network
+
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/db
+    restart: always
+    networks:
+      - app-network
+
+volumes:
+  app-db:
+
+networks:
+  app-network:
+    driver: bridge
