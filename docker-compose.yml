@@ -8,20 +8,12 @@ services:
     depends_on:
       - item-db
     restart: always
-    networks:
-      - app-network
 
   item-db:
     image: mongo:3
     volumes:
       - app-db:/data/db
     restart: always
-    networks:
-      - app-network
 
 volumes:
   app-db:
-
-networks:
-  app-network:
-    driver: bridge
